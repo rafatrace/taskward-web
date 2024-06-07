@@ -3,13 +3,33 @@
   width: 260px;
   height: 100vh;
   border-right: 1px solid #ebebeb;
+  display: flex;
+  flex-direction: column;
 }
 
 .list {
   padding: 10px;
   list-style: none;
+  flex: 1;
 }
 
 .list li {
   margin-bottom: 2px;
+}
+
+.new {
+  margin-top: 20px;
+  color: #636363;
+  text-decoration: none;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.new:hover {
+  color: #252628;
 }

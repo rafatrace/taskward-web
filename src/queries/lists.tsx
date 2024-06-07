@@ -1,7 +1,7 @@
 import { useAxios } from '@/providers/AxiosProvider'
 import { useSession } from '@/providers/SessionProvider'
 import { ErrorResp } from '@/utils/types'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 /**
  * Fetch user lists
@@ -23,7 +23,42 @@ export function useGetLists() {
 
       throw new Error('error.useGetLists')
     },
-    enabled: isAuthenticated
+    enabled: isAuthenticated === true
+  })
+}
+
+/**
+ * Optimistically create a new list
+ */
+export function useCreateList(onSuccess: (data: TNewListResponse) => void) {
+  const axios = useAxios()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (body: TNewListBody) => {
+      return await axios.post<TNewListResponse>(`/lists/new`, body)
+    },
+    onSuccess: (response) => {
+      onSuccess(response.data)
+      queryClient.invalidateQueries({ queryKey: ['get-lists'] })
+    }
+  })
+}
+
+/**
+ * Change list title
+ */
+export function useChangeListTitle(id: string) {
+  const axios = useAxios()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (title: string) => {
+      return await axios.put<TNewListResponse>(`/lists/${id}`, { title, hideComplete: true })
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get-lists'] })
+    }
   })
 }
 
@@ -46,4 +81,14 @@ export type TListSimplified = {
 type TUserFromList = {
   id: string
   name: string
+}
+
+export type TNewListBody = {
+  title: string
+}
+
+export type TNewListResponse = {
+  status: boolean
+  message: string
+  payload: TListSimplified
 }
