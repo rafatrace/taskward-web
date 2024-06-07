@@ -1,0 +1,21 @@
+.table {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.tableHeader {
+  display: flex;
+  border-bottom: 1px solid #e6e6e6;
+  height: 24px;
+  font-size: 14px;
+}
+
+.taskHeader {
+  flex: 1;
+  color: #252628;
+}
+
+.statusHeader {
+  width: 200px;
+  color: #636363;
+}

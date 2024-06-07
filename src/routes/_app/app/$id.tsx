@@ -1,4 +1,5 @@
 import ListTitle from '@/components/molecules/ListTitle'
+import Tasks from '@/components/organisms/Tasks'
 import { useGetLists } from '@/queries/lists'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -16,6 +17,7 @@ const List = () => {
       {list != null && (
         <>
           <ListTitle list={list} />
+          <Tasks list={list} />
         </>
       )}
     </div>

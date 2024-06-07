@@ -49,7 +49,7 @@ const ListTitle = ({ list }: TListTitleProps) => {
   const { mutate: changeListTitle } = useChangeListTitle(list.id.toString())
 
   return (
-    <div className={styles.title}>
+    <div>
       {editing ? (
         <input
           ref={inputRef}
