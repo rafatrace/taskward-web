@@ -35,9 +35,11 @@ const NewTaskRow = ({ close, listId, instantaneouslyAddNewTask }: TNewTaskRowPro
     if (text.length > 0) {
       instantaneouslyAddNewTask(text)
       saveNewTask(text)
+      setText('')
+      inputRef.current?.focus()
+    } else {
+      close()
     }
-
-    close()
   }
 
   // Mutations
