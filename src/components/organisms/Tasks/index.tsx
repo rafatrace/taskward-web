@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Task from '@/components/molecules/Task'
 import NewTaskButton from '@/components/molecules/NewTaskButton'
 import NewTaskRow from '@/components/molecules/NewTaskRow'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 type TTasksProps = {
   list: TListSimplified
@@ -15,8 +16,11 @@ const Tasks = ({ list }: TTasksProps) => {
   const [tasks, setTasks] = useState<TTask[]>([])
   const [isCreatingNewTask, setCreateNewTask] = useState<boolean>(false)
 
-  // Queriess
+  // Queries
   const { data: queryTasks } = useGetTasksFromList(list.id.toString())
+
+  // Hotkeys
+  useHotkeys('n', () => (!isCreatingNewTask ? setTimeout(openNewTaskRow, 1) : null))
 
   // When query tasks are fetched
   useEffect(() => {

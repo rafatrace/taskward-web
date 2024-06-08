@@ -21,6 +21,10 @@ const NewTaskRow = ({ close, listId, instantaneouslyAddNewTask }: TNewTaskRowPro
   const checkIfEnterWasPressed = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       inputRef.current?.blur()
+    } else if (text.length === 0 && e.key === 'Escape') {
+      inputRef.current?.blur()
+    } else if (text.length === 0 && e.key === 'Backspace') {
+      inputRef.current?.blur()
     }
   }
 
@@ -51,7 +55,7 @@ const NewTaskRow = ({ close, listId, instantaneouslyAddNewTask }: TNewTaskRowPro
           placeholder="Write a name for the task and press Enter to save"
           onChange={(e) => setText(e.target.value)}
           onBlur={onBlur}
-          onKeyUp={checkIfEnterWasPressed}
+          onKeyDown={checkIfEnterWasPressed}
         />
       </div>
       <div className={styles.status}>-</div>
