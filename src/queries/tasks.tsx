@@ -46,7 +46,7 @@ export function useToggleTaskStatus(id: string) {
 }
 
 /**
- * Mark task as completed/uncompleted
+ * Create a new task
  */
 export function useCreateNewTask(listId: string) {
   // Services
@@ -59,6 +59,24 @@ export function useCreateNewTask(listId: string) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['get-tasks', listId] })
+    }
+  })
+}
+
+/**
+ * Update task
+ */
+export function useUpdateTask(taskId: string) {
+  // Services
+  const axios = useAxios()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (text: string) => {
+      return await axios.put(`/tasks/${taskId}`, { text, tagIds: [] })
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get-tasks'] })
     }
   })
 }
