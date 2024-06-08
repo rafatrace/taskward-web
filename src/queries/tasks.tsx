@@ -27,6 +27,9 @@ export function useGetTasksFromList(id: string) {
   })
 }
 
+/**
+ * Mark task as completed/uncompleted
+ */
 export function useToggleTaskStatus(id: string) {
   // Services
   const axios = useAxios()
@@ -38,6 +41,24 @@ export function useToggleTaskStatus(id: string) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['get-tasks'] })
+    }
+  })
+}
+
+/**
+ * Mark task as completed/uncompleted
+ */
+export function useCreateNewTask(listId: string) {
+  // Services
+  const axios = useAxios()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (text: string) => {
+      return await axios.post(`/tasks/new`, { text, listId, tagIds: [] })
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get-tasks', listId] })
     }
   })
 }

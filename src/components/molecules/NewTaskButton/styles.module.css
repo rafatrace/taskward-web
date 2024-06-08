@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  margin-top: 6px;
+  cursor: pointer;
+  gap: 6px;
+  height: 28px;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  transition: all 200ms ease-in-out;
+  margin-left: -6px;
+  color: #636363;
+}
+
+.container:hover {
+  background-color: #eee;
+  border-color: #eaeaea;
+}
+
+.container:active {
+  transform: scale(1.1);
+}

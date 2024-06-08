@@ -2,7 +2,7 @@
   width: 16px;
   height: 16px;
   border: 1px solid #e6e6e6;
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,12 +23,12 @@
 }
 
 .checked {
-  background-color: #00b8a8;
-  border-color: #00b8a8;
+  background-color: #000;
+  border-color: #000;
 }
 
 .checked:hover {
-  border-color: #00b8a8;
+  border-color: #000;
 }
 
 .container svg {
