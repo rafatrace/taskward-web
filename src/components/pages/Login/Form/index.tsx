@@ -75,7 +75,7 @@ const Form = () => {
         </form>
 
         <div className={styles.copy}>
-          <p>Copyright © todoward {new Date().getFullYear().toString()}</p>
+          <p>Copyright © taskward {new Date().getFullYear().toString()}</p>
         </div>
       </div>
     )
