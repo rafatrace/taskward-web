@@ -1,0 +1,39 @@
+.container {
+  position: relative;
+}
+
+.btn {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ebebeb;
+}
+
+.optionsModal {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 280px;
+  background-color: #ffffff;
+  display: none;
+  z-index: 800;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  padding: 3px 0;
+  box-shadow:
+    0px 9px 24px -3px rgba(0, 0, 0, 0.16),
+    0px 4px 8px -1px rgba(0, 0, 0, 0.08);
+}
+
+.optionsModal.open {
+  display: flex;
+}

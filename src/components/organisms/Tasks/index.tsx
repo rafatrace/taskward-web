@@ -50,13 +50,25 @@ const Tasks = ({ list }: TTasksProps) => {
     ])
   }
 
+  /**
+   * Delete task
+   */
+  const deleteTask = (id: number) => {
+    const index = tasks.findIndex((t) => t.id === id)
+    const tasksClone = tasks.slice()
+    tasksClone.splice(index, 1)
+    setTasks(tasksClone)
+  }
+
   return (
     <div className={styles.table}>
       <div className={styles.tableHeader}>
         <div className={styles.taskHeader}>Tasks</div>
         <div className={styles.statusHeader}>Status</div>
       </div>
-      <div className={styles.rows}>{tasks?.map((task) => <Task key={task.id} task={task} />)}</div>
+      <div className={styles.rows}>
+        {tasks?.map((task) => <Task key={task.id} task={task} deleteTask={deleteTask} />)}
+      </div>
       {isCreatingNewTask && (
         <NewTaskRow close={closeNewTaskRow} listId={list.id} instantaneouslyAddNewTask={instantaneouslyAddNewTask} />
       )}

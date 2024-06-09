@@ -4,12 +4,14 @@ import Checkbox from '@/components/atoms/Checkbox'
 import { useEffect, useRef, useState, KeyboardEvent } from 'react'
 import { competeTaskChime } from '@/utils/audio'
 import { cn } from '@/utils/styles'
+import TaskOptions from '../TaskOptions'
 
 type TTaskProps = {
   task: TTask
+  deleteTask: (id: number) => void
 }
 
-const Task = ({ task }: TTaskProps) => {
+const Task = ({ task, deleteTask }: TTaskProps) => {
   // Refs
   const inputRef = useRef<HTMLInputElement>()
 
@@ -93,7 +95,10 @@ const Task = ({ task }: TTaskProps) => {
             <span onClick={activateEditingMode}>{text}</span>
           )}
         </div>
-        <div className={styles.status}>-</div>
+        <div className={styles.status}>
+          <div>-</div>
+          <TaskOptions taskId={localTask.id} deleteTask={deleteTask} />
+        </div>
       </div>
     </div>
   )

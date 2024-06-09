@@ -8,7 +8,7 @@
   justify-content: center;
   cursor: pointer;
   transform: scale(1);
-  background-color: #fff;
+  background-color: #ffffff;
   transition:
     transform 100ms ease-in-out,
     border-color 100ms ease-in-out;

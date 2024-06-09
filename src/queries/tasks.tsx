@@ -82,6 +82,24 @@ export function useUpdateTask(taskId: string) {
 }
 
 /**
+ * Delete task
+ */
+export function useDeleteTask(taskId: string) {
+  // Services
+  const axios = useAxios()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async () => {
+      return await axios.delete(`/tasks/${taskId}`)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get-tasks'] })
+    }
+  })
+}
+
+/**
  * Types
  */
 type TGetTasksFromListResponse = {
