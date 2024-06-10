@@ -7,6 +7,7 @@ type TStatusProps = {
 }
 
 const Status = ({ label, color }: TStatusProps) => {
+  if (label === 'To do') return null
   return <div className={cn(styles.status, styles[color])}>{label}</div>
 }
 

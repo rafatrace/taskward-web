@@ -24,12 +24,12 @@
 }
 
 .checked {
-  background-color: #000;
-  border-color: #000;
+  background-color: #3c7c00;
+  border-color: #3c7c00;
 }
 
 .checked:hover {
-  border-color: #000;
+  border-color: #3c7c00;
 }
 
 .container svg {
