@@ -45,7 +45,12 @@ const Tasks = ({ list }: TTasksProps) => {
         text,
         isCompleted: false,
         completedAt: null,
-        completedBy: ''
+        completedBy: '',
+        status: {
+          id: '1',
+          label: 'To do',
+          color: 'white'
+        }
       }
     ])
   }
