@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, KeyboardEvent } from 'react'
 import { competeTaskChime } from '@/utils/audio'
 import { cn } from '@/utils/styles'
 import TaskOptions from '../TaskOptions'
+import Status from '@/components/atoms/Status'
 
 type TTaskProps = {
   task: TTask
@@ -96,7 +97,9 @@ const Task = ({ task, deleteTask }: TTaskProps) => {
           )}
         </div>
         <div className={styles.status}>
-          <div>-</div>
+          <div>
+            <Status label={localTask.status.label} color={localTask.status.color} />
+          </div>
           <TaskOptions taskId={localTask.id} deleteTask={deleteTask} />
         </div>
       </div>

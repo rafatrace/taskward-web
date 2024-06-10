@@ -1,0 +1,16 @@
+.status {
+  font-size: 14px;
+  font-weight: 400px;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+.white {
+  background-color: #ffffff;
+  color: #292929;
+}
+
+.orange {
+  background-color: #fff2dc;
+  color: #906500;
+}

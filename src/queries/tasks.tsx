@@ -114,4 +114,11 @@ export type TTask = {
   isCompleted: boolean
   completedAt: string
   completedBy: string
+  status: TStatus
+}
+
+export type TStatus = {
+  id: string
+  label: string
+  color: string
 }
