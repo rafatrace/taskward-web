@@ -73,7 +73,25 @@ export function useUpdateTask(taskId: string) {
 
   return useMutation({
     mutationFn: async (text: string) => {
-      return await axios.put(`/tasks/${taskId}`, { text, tagIds: [] })
+      return await axios.patch(`/tasks/${taskId}`, { text })
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get-tasks'] })
+    }
+  })
+}
+
+/**
+ * Change status
+ */
+export function useChangeTaskStatus(taskId: number) {
+  // Services
+  const axios = useAxios()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (statusId: number) => {
+      return await axios.patch(`/tasks/${taskId}/status`, { statusId })
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['get-tasks'] })

@@ -3,6 +3,7 @@
   font-weight: 400px;
   border-radius: 4px;
   padding: 2px 4px;
+  display: inline-flex;
 }
 
 .white {
