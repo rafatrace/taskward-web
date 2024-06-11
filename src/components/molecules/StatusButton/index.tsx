@@ -38,13 +38,13 @@ const StatusButton = ({ task }: TStatusButtonProps) => {
     <div className={styles.statusButton} onClick={toggleOptions}>
       <Status label={task.status.label} color={task.status.color} />
       <div ref={optionsModalRef} className={cn(styles.optionsModal, { [styles.open]: isOpen })}>
-        <button onClick={changeTo(1)}>
+        <button onClick={changeTo('1')}>
           <Status label="To do" color="white" show />
         </button>
-        <button onClick={changeTo(2)}>
+        <button onClick={changeTo('2')}>
           <Status label="In progress" color="orange" />
         </button>
-        <button onClick={changeTo(4)}>
+        <button onClick={changeTo('4')}>
           <Status label="Done" color="green" />
         </button>
       </div>
