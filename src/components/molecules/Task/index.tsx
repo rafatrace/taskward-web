@@ -1,4 +1,4 @@
-import { TTask, useToggleTaskStatus, useUpdateTask } from '@/queries/tasks'
+import { TTask, useToggleCompleted, useUpdateTask } from '@/queries/tasks'
 import styles from './styles.module.css'
 import Checkbox from '@/components/atoms/Checkbox'
 import { useEffect, useRef, useState, KeyboardEvent } from 'react'
@@ -9,10 +9,9 @@ import StatusButton from '../StatusButton'
 
 type TTaskProps = {
   task: TTask
-  deleteTask: (id: number) => void
 }
 
-const Task = ({ task, deleteTask }: TTaskProps) => {
+const Task = ({ task }: TTaskProps) => {
   // Refs
   const inputRef = useRef<HTMLInputElement>()
 
@@ -35,6 +34,21 @@ const Task = ({ task, deleteTask }: TTaskProps) => {
   const toggle = () => {
     const t = { ...localTask }
     t.isCompleted = !t.isCompleted
+
+    if (t.isCompleted) {
+      t.status = {
+        id: '4',
+        label: 'Done',
+        color: 'green'
+      }
+    } else {
+      t.status = {
+        id: '1',
+        label: 'To do',
+        color: 'white'
+      }
+    }
+
     setTask(t)
 
     if (t.isCompleted) {
@@ -75,8 +89,8 @@ const Task = ({ task, deleteTask }: TTaskProps) => {
   }
 
   // Mutation
-  const { mutate: toggleTaskStatus } = useToggleTaskStatus(task.id.toString())
-  const { mutate: updateTask } = useUpdateTask(task.id.toString())
+  const { mutate: toggleTaskStatus } = useToggleCompleted(task.id)
+  const { mutate: updateTask } = useUpdateTask(task.id)
 
   return (
     <div className={styles.container}>
@@ -98,7 +112,7 @@ const Task = ({ task, deleteTask }: TTaskProps) => {
         </div>
         <div className={styles.status}>
           <StatusButton task={localTask} />
-          <TaskOptions taskId={localTask.id} deleteTask={deleteTask} />
+          <TaskOptions taskId={localTask.id} />
         </div>
       </div>
     </div>

@@ -1,16 +1,17 @@
 import { useRef, useState, KeyboardEvent } from 'react'
 import styles from './styles.module.css'
-import { useCreateNewTask } from '@/queries/tasks'
+import { useTasks } from '@/providers/TasksProvider'
 
 type TNewTaskRowProps = {
   close: () => void
-  listId: number
-  instantaneouslyAddNewTask: (text: string) => void
 }
 
-const NewTaskRow = ({ close, listId, instantaneouslyAddNewTask }: TNewTaskRowProps) => {
+const NewTaskRow = ({ close }: TNewTaskRowProps) => {
   // Refs
   const inputRef = useRef<HTMLInputElement>()
+
+  // Services
+  const { addTask } = useTasks()
 
   // Local state
   const [text, setText] = useState<string>('')
@@ -33,17 +34,13 @@ const NewTaskRow = ({ close, listId, instantaneouslyAddNewTask }: TNewTaskRowPro
    */
   const onBlur = () => {
     if (text.length > 0) {
-      instantaneouslyAddNewTask(text)
-      saveNewTask(text)
+      addTask(text)
       setText('')
       inputRef.current?.focus()
     } else {
       close()
     }
   }
-
-  // Mutations
-  const { mutate: saveNewTask } = useCreateNewTask(listId.toString())
 
   return (
     <div className={styles.row}>

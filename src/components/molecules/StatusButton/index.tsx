@@ -1,9 +1,10 @@
-import { TTask, useChangeTaskStatus } from '@/queries/tasks'
+import { TTask } from '@/queries/tasks'
 import styles from './styles.module.css'
 import Status from '@/components/atoms/Status'
 import useClickOutside from '@/hooks/useClickOutside'
 import { useState } from 'react'
 import { cn } from '@/utils/styles'
+import { useTasks } from '@/providers/TasksProvider'
 
 type TStatusButtonProps = {
   task: TTask
@@ -14,6 +15,7 @@ const StatusButton = ({ task }: TStatusButtonProps) => {
   const optionsModalRef = useClickOutside<HTMLDivElement>(() => {
     setOpen(false)
   })
+  const { changeTaskStatus } = useTasks()
 
   // Local state
   const [isOpen, setOpen] = useState<boolean>(false)
@@ -26,14 +28,11 @@ const StatusButton = ({ task }: TStatusButtonProps) => {
   /**
    * Change status
    */
-  const changeTo = (statusId: number) => {
+  const changeTo = (statusId: string) => {
     return () => {
-      changeTaskStatus(statusId)
+      changeTaskStatus(task.id, statusId)
     }
   }
-
-  // Mutations
-  const { mutate: changeTaskStatus } = useChangeTaskStatus(task.id)
 
   return (
     <div className={styles.statusButton} onClick={toggleOptions}>

@@ -4,18 +4,19 @@ import Icon from '@/components/atoms/Icon'
 import { cn } from '@/utils/styles'
 import useClickOutside from '@/hooks/useClickOutside'
 import Option from '../Option'
-import { useDeleteTask } from '@/queries/tasks'
+import { useTasks } from '@/providers/TasksProvider'
 
 type TTaskOptionsProps = {
   taskId: number
-  deleteTask: (id: number) => void
 }
 
-const TaskOptions = ({ taskId, deleteTask }: TTaskOptionsProps) => {
+const TaskOptions = ({ taskId }: TTaskOptionsProps) => {
   // Services
   const optionsModalRef = useClickOutside<HTMLDivElement>(() => {
     setOpen(false)
   })
+  // Services
+  const { deleteTask } = useTasks()
 
   // Local state
   const [isOpen, setOpen] = useState<boolean>(false)
@@ -31,11 +32,7 @@ const TaskOptions = ({ taskId, deleteTask }: TTaskOptionsProps) => {
   const confirmDeleteTask = () => {
     toggleOptions()
     deleteTask(taskId)
-    mutate()
   }
-
-  // Mutations
-  const { mutate } = useDeleteTask(taskId.toString())
 
   return (
     <div className={styles.container}>

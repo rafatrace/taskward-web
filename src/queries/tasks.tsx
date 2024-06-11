@@ -6,7 +6,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 /**
  * Fetch tasks from a specific list
  */
-export function useGetTasksFromList(id: string) {
+export function useGetTasksFromList(id: number | null) {
   // Services
   const axios = useAxios()
   const { isAuthenticated } = useSession()
@@ -23,14 +23,14 @@ export function useGetTasksFromList(id: string) {
 
       throw new Error('error.useGetTasksFromList')
     },
-    enabled: isAuthenticated === true
+    enabled: isAuthenticated === true && id != null
   })
 }
 
 /**
  * Mark task as completed/uncompleted
  */
-export function useToggleTaskStatus(id: string) {
+export function useToggleCompleted(id: number) {
   // Services
   const axios = useAxios()
   const queryClient = useQueryClient()
@@ -48,7 +48,7 @@ export function useToggleTaskStatus(id: string) {
 /**
  * Create a new task
  */
-export function useCreateNewTask(listId: string) {
+export function useCreateNewTask(listId: number | null) {
   // Services
   const axios = useAxios()
   const queryClient = useQueryClient()
@@ -66,7 +66,7 @@ export function useCreateNewTask(listId: string) {
 /**
  * Update task
  */
-export function useUpdateTask(taskId: string) {
+export function useUpdateTask(taskId: number) {
   // Services
   const axios = useAxios()
   const queryClient = useQueryClient()
@@ -84,13 +84,13 @@ export function useUpdateTask(taskId: string) {
 /**
  * Change status
  */
-export function useChangeTaskStatus(taskId: number) {
+export function useChangeTaskStatus() {
   // Services
   const axios = useAxios()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async (statusId: number) => {
+    mutationFn: async ({ taskId, statusId }: { taskId: number; statusId: string }) => {
       return await axios.patch(`/tasks/${taskId}/status`, { statusId })
     },
     onSuccess: () => {
@@ -102,13 +102,13 @@ export function useChangeTaskStatus(taskId: number) {
 /**
  * Delete task
  */
-export function useDeleteTask(taskId: string) {
+export function useDeleteTask() {
   // Services
   const axios = useAxios()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async () => {
+    mutationFn: async (taskId: number) => {
       return await axios.delete(`/tasks/${taskId}`)
     },
     onSuccess: () => {
