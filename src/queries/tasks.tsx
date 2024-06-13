@@ -30,13 +30,13 @@ export function useGetTasksFromList(id: number | null) {
 /**
  * Mark task as completed/uncompleted
  */
-export function useToggleCompleted(id: number) {
+export function useToggleCompleted() {
   // Services
   const axios = useAxios()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async () => {
+    mutationFn: async (id: number) => {
       return await axios.patch(`/tasks/${id}/completed`)
     },
     onSuccess: () => {
@@ -66,13 +66,13 @@ export function useCreateNewTask(listId: number | null) {
 /**
  * Update task
  */
-export function useUpdateTask(taskId: number) {
+export function useUpdateTask() {
   // Services
   const axios = useAxios()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async (text: string) => {
+    mutationFn: async ({ text, taskId }: { text: string; taskId: number }) => {
       return await axios.patch(`/tasks/${taskId}`, { text })
     },
     onSuccess: () => {

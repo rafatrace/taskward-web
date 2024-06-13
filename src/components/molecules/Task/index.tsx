@@ -6,6 +6,7 @@ import { competeTaskChime } from '@/utils/audio'
 import { cn } from '@/utils/styles'
 import TaskOptions from '../TaskOptions'
 import StatusButton from '../StatusButton'
+import { useTasks } from '@/providers/TasksProvider'
 
 type TTaskProps = {
   task: TTask
@@ -14,6 +15,9 @@ type TTaskProps = {
 const Task = ({ task }: TTaskProps) => {
   // Refs
   const inputRef = useRef<HTMLInputElement>()
+
+  // Services
+  const { toggleCompletedStatus, updateTaskText } = useTasks()
 
   // Local state
   const [localTask, setTask] = useState<TTask>(task)
@@ -27,36 +31,6 @@ const Task = ({ task }: TTaskProps) => {
       setText(task.text)
     }
   }, [task])
-
-  /**
-   * Toggle as completed/uncompleted
-   */
-  const toggle = () => {
-    const t = { ...localTask }
-    t.isCompleted = !t.isCompleted
-
-    if (t.isCompleted) {
-      t.status = {
-        id: '4',
-        label: 'Done',
-        color: 'green'
-      }
-    } else {
-      t.status = {
-        id: '1',
-        label: 'To do',
-        color: 'white'
-      }
-    }
-
-    setTask(t)
-
-    if (t.isCompleted) {
-      competeTaskChime()
-    }
-
-    toggleTaskStatus()
-  }
 
   // Editing mode controllers
   const activateEditingMode = () => setEditing(true)
@@ -82,21 +56,24 @@ const Task = ({ task }: TTaskProps) => {
     if (!text.length) {
       setText(localTask.text)
     } else if (text !== task.text) {
-      updateTask(text)
+      updateTaskText(text, localTask.id)
     }
 
     turnOffEditingMode()
   }
 
-  // Mutation
-  const { mutate: toggleTaskStatus } = useToggleCompleted(task.id)
-  const { mutate: updateTask } = useUpdateTask(task.id)
+  /**
+   * Toggle status
+   */
+  const toggle = () => {
+    toggleCompletedStatus(task.id)
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.row}>
         <div className={cn(styles.text, { [styles.editing]: isEditing })}>
-          <Checkbox checked={localTask.isCompleted} toggle={toggle} />
+          <Checkbox checked={localTask.status.label === 'Done'} toggle={toggle} />
           {isEditing ? (
             <input
               ref={inputRef}

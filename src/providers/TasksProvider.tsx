@@ -1,4 +1,13 @@
-import { TTask, useChangeTaskStatus, useCreateNewTask, useDeleteTask, useGetTasksFromList } from '@/queries/tasks'
+import {
+  TTask,
+  useChangeTaskStatus,
+  useCreateNewTask,
+  useDeleteTask,
+  useGetTasksFromList,
+  useToggleCompleted,
+  useUpdateTask
+} from '@/queries/tasks'
+import { competeTaskChime } from '@/utils/audio'
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react'
 
 export type TLoggedUser = {
@@ -13,6 +22,8 @@ export type TTasksProvider = {
   addTask: (text: string) => void
   deleteTask: (id: number) => void
   changeTaskStatus: (taskId: number, statusId: string) => void
+  toggleCompletedStatus: (taskId: number) => void
+  updateTaskText: (text: string, taskId: number) => void
 }
 
 /**
@@ -23,7 +34,9 @@ export const TasksContext = createContext<TTasksProvider>({
   loadTasks: null,
   addTask: null,
   deleteTask: null,
-  changeTaskStatus: null
+  changeTaskStatus: null,
+  toggleCompletedStatus: null,
+  updateTaskText: null
 })
 
 /**
@@ -104,21 +117,65 @@ export default function TasksProvider({ children }: PropsWithChildren<unknown>) 
     }
 
     if (statusId == '4') {
-      tasksClone[index].isCompleted = true
-    } else {
-      tasksClone[index].isCompleted = false
+      competeTaskChime()
     }
 
     changeStatus({ taskId, statusId })
+  }
+
+  /**
+   * Mark/Unmark as complete
+   */
+  const toggleCompletedStatus = (taskId: number) => {
+    const tasksClone = tasks.slice()
+    const index = tasksClone.findIndex((t) => t.id === taskId)
+
+    const isCompleted = tasksClone[index].isCompleted
+
+    if (isCompleted) {
+      tasksClone[index].status = {
+        id: '1',
+        label: 'To do',
+        color: 'white'
+      }
+    } else {
+      tasksClone[index].status = {
+        id: '4',
+        label: 'Done',
+        color: 'green'
+      }
+      competeTaskChime()
+    }
+
+    setTasks(tasksClone)
+    toggleTaskStatus(taskId)
+  }
+
+  /**
+   * Mark/Unmark as complete
+   */
+  const updateTaskText = (text: string, taskId: number) => {
+    const tasksClone = tasks.slice()
+    const index = tasksClone.findIndex((t) => t.id === taskId)
+
+    tasksClone[index].text = text
+
+    updateTask({ text, taskId })
+
+    setTasks(tasksClone)
   }
 
   // Mutations
   const { mutate: saveNewTask } = useCreateNewTask(listId)
   const { mutate: deleteTaskMutate } = useDeleteTask()
   const { mutate: changeStatus } = useChangeTaskStatus()
+  const { mutate: toggleTaskStatus } = useToggleCompleted()
+  const { mutate: updateTask } = useUpdateTask()
 
   return (
-    <TasksContext.Provider value={{ tasks, loadTasks, addTask, deleteTask, changeTaskStatus }}>
+    <TasksContext.Provider
+      value={{ tasks, loadTasks, addTask, deleteTask, changeTaskStatus, toggleCompletedStatus, updateTaskText }}
+    >
       {children}
     </TasksContext.Provider>
   )
