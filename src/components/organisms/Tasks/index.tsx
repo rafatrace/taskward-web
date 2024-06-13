@@ -32,13 +32,15 @@ const Tasks = ({ list }: TTasksProps) => {
   const openNewTaskRow = () => setCreateNewTask(true)
   const closeNewTaskRow = () => setCreateNewTask(false)
 
+  const filteredTasks = list.hideComplete ? tasks?.filter((t) => !t.isCompleted) : tasks
+
   return (
     <div className={styles.table}>
       <div className={styles.tableHeader}>
         <div className={styles.taskHeader}>Tasks</div>
         <div className={styles.statusHeader}>Status</div>
       </div>
-      <div className={styles.rows}>{tasks?.map((task) => <Task key={task.id} task={task} />)}</div>
+      <div className={styles.rows}>{filteredTasks?.map((task) => <Task key={task.id} task={task} />)}</div>
       {isCreatingNewTask && <NewTaskRow close={closeNewTaskRow} />}
       <NewTaskButton createTask={openNewTaskRow} />
     </div>
