@@ -7,6 +7,15 @@
   flex-direction: column;
 }
 
+.logo {
+  padding: 20px;
+}
+
+.logo svg {
+  width: 100px;
+  height: 16px;
+}
+
 .list {
   padding: 10px;
   list-style: none;
