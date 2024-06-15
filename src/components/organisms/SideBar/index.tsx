@@ -44,7 +44,7 @@ const SideBar = ({ listId }: TSideBarProps) => {
 
   return (
     <div className={styles.container}>
-      <UserOptions />
+      <UserOptions toggleSidebar={() => console.log(123)} />
       <ul className={styles.list}>
         {lists != null &&
           lists.map((list) => (

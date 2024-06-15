@@ -9,7 +9,7 @@ import Option from '@/components/molecules/Option'
 import Icon from '@/components/atoms/Icon'
 
 type TUserOptionsProps = {
-  toggleSidebar: null
+  toggleSidebar: () => void
 }
 
 const UserOptions = ({ toggleSidebar }: TUserOptionsProps) => {
