@@ -15,6 +15,7 @@ const TaskOptions = ({ taskId }: TTaskOptionsProps) => {
   const optionsModalRef = useClickOutside<HTMLDivElement>(() => {
     setOpen(false)
   })
+
   // Services
   const { deleteTask } = useTasks()
 
