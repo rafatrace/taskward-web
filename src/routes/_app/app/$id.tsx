@@ -2,6 +2,7 @@ import ListTitle from '@/components/molecules/ListTitle'
 import Tasks from '@/components/organisms/Tasks'
 import { useGetLists } from '@/queries/lists'
 import { createFileRoute } from '@tanstack/react-router'
+import { Helmet } from 'react-helmet-async'
 
 const List = () => {
   // Router params
@@ -16,6 +17,9 @@ const List = () => {
     <div>
       {list != null && (
         <>
+          <Helmet>
+            <title>{list.title} — Taskward</title>
+          </Helmet>
           <ListTitle list={list} />
           <Tasks list={list} />
         </>
