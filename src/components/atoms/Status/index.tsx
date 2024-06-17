@@ -8,8 +8,8 @@ type TStatusProps = {
 }
 
 const Status = ({ label, color, show }: TStatusProps) => {
-  if (label === 'To do' && (show == null || !show)) return null
-  return <div className={cn(styles.status, styles[color])}>{label}</div>
+  const hideIt = label === 'To do' && !show
+  return <div className={cn(styles.status, styles[color], { [styles.hideIt]: hideIt })}>{label}</div>
 }
 
 export default Status

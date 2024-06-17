@@ -19,6 +19,7 @@ const StatusButton = ({ task }: TStatusButtonProps) => {
 
   // Local state
   const [isOpen, setOpen] = useState<boolean>(false)
+  const [isHovered, setHovered] = useState<boolean>(false)
 
   /**
    * Control options modal
@@ -35,8 +36,13 @@ const StatusButton = ({ task }: TStatusButtonProps) => {
   }
 
   return (
-    <div className={styles.statusButton} onClick={toggleOptions}>
-      <Status label={task.status.label} color={task.status.color} />
+    <div
+      className={styles.statusButton}
+      onClick={toggleOptions}
+      onMouseOver={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <Status label={task.status.label} color={task.status.color} show={isHovered} />
       <div ref={optionsModalRef} className={cn(styles.optionsModal, { [styles.open]: isOpen })}>
         <button onClick={changeTo('1')}>
           <Status label="To do" color="white" show />
