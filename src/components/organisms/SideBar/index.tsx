@@ -4,6 +4,8 @@ import Menu from '@/components/molecules/Menu'
 import { useNavigate } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
 import UserOptions from '@/components/organisms/UserOptions'
+import { useSidebar } from '@/providers/SidebarProvider'
+import { cn } from '@/utils/styles'
 
 type TSideBarProps = {
   listId: string
@@ -12,6 +14,7 @@ type TSideBarProps = {
 const SideBar = ({ listId }: TSideBarProps) => {
   // Services
   const navigate = useNavigate()
+  const { isOpen } = useSidebar()
 
   // Local state
   const [lists, setLists] = useState<TListSimplified[]>([])
@@ -43,8 +46,8 @@ const SideBar = ({ listId }: TSideBarProps) => {
   const { mutate: createList } = useCreateList(optimisticallyAddList)
 
   return (
-    <div className={styles.container}>
-      <UserOptions toggleSidebar={() => console.log(123)} />
+    <div className={cn(styles.container, { [styles.open]: isOpen })}>
+      <UserOptions />
       <ul className={styles.list}>
         {lists != null &&
           lists.map((list) => (

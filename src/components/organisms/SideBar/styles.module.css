@@ -3,8 +3,12 @@
   width: 260px;
   height: 100vh;
   border-right: 1px solid #ebebeb;
-  display: flex;
+  display: none;
   flex-direction: column;
+}
+
+.container.open {
+  display: flex;
 }
 
 .logo {

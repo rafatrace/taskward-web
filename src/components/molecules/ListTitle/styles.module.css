@@ -1,3 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.showSidebar {
+  padding: 6px;
+  background-color: transparent;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.showSidebar:hover {
+  background-color: #eee;
+}
+
 .label {
   font-size: 14px;
   cursor: input;

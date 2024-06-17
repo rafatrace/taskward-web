@@ -7,16 +7,14 @@ import { useState } from 'react'
 import { cn } from '@/utils/styles'
 import Option from '@/components/molecules/Option'
 import Icon from '@/components/atoms/Icon'
+import { useSidebar } from '@/providers/SidebarProvider'
 
-type TUserOptionsProps = {
-  toggleSidebar: () => void
-}
-
-const UserOptions = ({ toggleSidebar }: TUserOptionsProps) => {
+const UserOptions = () => {
   // Services
   const optionsModalRef = useClickOutside<HTMLDivElement>(() => {
     closeOptions()
   })
+  const { closeSidebar } = useSidebar()
 
   // Services
   const { user, signOut } = useSession()
@@ -52,7 +50,7 @@ const UserOptions = ({ toggleSidebar }: TUserOptionsProps) => {
         <Option icon="settings" message="Settings" action={() => console.log('open settings')} />
         <Option icon="sign-out" message="Sign out" action={signOutUser} />
       </div>
-      <div className={styles.hideSidebar} onClick={toggleSidebar}>
+      <div className={styles.hideSidebar} onClick={closeSidebar}>
         <Icon type="hide-sidebar" size={20} color="#636363" />
       </div>
     </div>

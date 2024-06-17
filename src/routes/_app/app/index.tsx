@@ -1,7 +1,19 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { useGetLists } from '@/queries/lists'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useEffect } from 'react'
 
 const App = () => {
-  return <h1>App Index</h1>
+  // Services
+  const navigate = useNavigate()
+
+  // Queries
+  const { data: lists } = useGetLists()
+
+  useEffect(() => {
+    if (lists != null) navigate({ to: `/app/${lists[0].id}` })
+  }, [lists])
+
+  return null
 }
 
 export const Route = createFileRoute('/_app/app/')({

@@ -5,6 +5,7 @@ import QueryProvider from '@/providers/QueryProvider'
 import AxiosProvider from '@/providers/AxiosProvider'
 import { TSessionProvider } from '@/providers/SessionProvider'
 import TasksProvider from '@/providers/TasksProvider'
+import SidebarProvider from '@/providers/SidebarProvider'
 
 interface MyRouterContext {
   session: TSessionProvider
@@ -16,9 +17,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       <AxiosProvider>
         <QueryProvider>
           <HelmetProvider>
-            <TasksProvider>
-              <Outlet />
-            </TasksProvider>
+            <SidebarProvider>
+              <TasksProvider>
+                <Outlet />
+              </TasksProvider>
+            </SidebarProvider>
           </HelmetProvider>
         </QueryProvider>
       </AxiosProvider>
