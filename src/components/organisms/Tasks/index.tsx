@@ -32,7 +32,14 @@ const Tasks = ({ list }: TTasksProps) => {
   const openNewTaskRow = () => setCreateNewTask(true)
   const closeNewTaskRow = () => setCreateNewTask(false)
 
-  const filteredTasks = list.hideComplete ? tasks?.filter((t) => !t.isCompleted) : tasks
+  const filteredTasks = !list.hideComplete ? tasks : tasks?.filter((t) => !t.isCompleted)
+
+  // Sort it in a way that uncompleted tasks show on top
+  filteredTasks.sort((a, b) => {
+    if (a.isCompleted && !b.isCompleted) return 1
+    if (!a.isCompleted && b.isCompleted) return -1
+    return 0
+  })
 
   return (
     <div className={styles.table}>

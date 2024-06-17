@@ -35,7 +35,7 @@
   position: absolute;
   top: calc(100% - 10px);
   left: 16px;
-  width: 280px;
+  width: 200px;
   background-color: #ffffff;
   display: none;
   z-index: 800;

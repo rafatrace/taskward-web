@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: space-between;
 }
 
 .showSidebar {
@@ -16,6 +17,12 @@
 
 .showSidebar:hover {
   background-color: #eee;
+}
+
+.sidebarAndTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .label {

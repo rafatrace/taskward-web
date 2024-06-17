@@ -63,6 +63,23 @@ export function useChangeListTitle(id: string) {
 }
 
 /**
+ * Optimistically toggle hideCompleted flag of a list
+ */
+export function useToggleHideCompleted() {
+  const axios = useAxios()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (id: number) => {
+      return await axios.patch(`/lists/${id}/toggle-completed`)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get-lists'] })
+    }
+  })
+}
+
+/**
  * Types
  */
 type TGetListsResponse = {

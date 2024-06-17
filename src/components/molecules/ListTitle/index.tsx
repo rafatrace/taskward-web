@@ -3,6 +3,7 @@ import styles from './styles.module.css'
 import { KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { useSidebar } from '@/providers/SidebarProvider'
 import Icon from '@/components/atoms/Icon'
+import ListOptions from '../ListOptions'
 
 type TListTitleProps = {
   list: TListSimplified
@@ -55,26 +56,29 @@ const ListTitle = ({ list }: TListTitleProps) => {
 
   return (
     <div className={styles.container}>
-      {!isOpen && (
-        <div className={styles.showSidebar} onClick={openSidebar}>
-          <Icon type="show-sidebar" size={20} color="#636363" />
-        </div>
-      )}
-      {editing ? (
-        <input
-          ref={inputRef}
-          autoFocus
-          value={title}
-          className={styles.input}
-          onChange={(e) => setTitle(e.target.value)}
-          onBlur={saveAndStopEditing}
-          onKeyUp={checkIfEnterWasPressed}
-        />
-      ) : (
-        <div className={styles.label} onClick={startEditing}>
-          {title}
-        </div>
-      )}
+      <div className={styles.sidebarAndTitle}>
+        {!isOpen && (
+          <div className={styles.showSidebar} onClick={openSidebar}>
+            <Icon type="show-sidebar" size={20} color="#636363" />
+          </div>
+        )}
+        {editing ? (
+          <input
+            ref={inputRef}
+            autoFocus
+            value={title}
+            className={styles.input}
+            onChange={(e) => setTitle(e.target.value)}
+            onBlur={saveAndStopEditing}
+            onKeyUp={checkIfEnterWasPressed}
+          />
+        ) : (
+          <div className={styles.label} onClick={startEditing}>
+            {title}
+          </div>
+        )}
+      </div>
+      <ListOptions listId={list.id} hideCompleted={list.hideComplete} />
     </div>
   )
 }

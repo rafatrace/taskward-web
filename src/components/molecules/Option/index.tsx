@@ -5,9 +5,10 @@ type TOptionProps = {
   icon: TIconType
   message: string
   action: () => void
+  danger?: boolean
 }
 
-const Option = ({ icon, message, action }: TOptionProps) => {
+const Option = ({ icon, message, action, danger }: TOptionProps) => {
   return (
     <div className={styles.container} onClick={action}>
       <Icon type={icon} size={16} color="#262626" />
