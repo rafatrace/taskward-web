@@ -4,8 +4,7 @@ import Icon from '@/components/atoms/Icon'
 import { cn } from '@/utils/styles'
 import useClickOutside from '@/hooks/useClickOutside'
 import Option from '../Option'
-import { useTasks } from '@/providers/TasksProvider'
-import { useToggleHideCompleted } from '@/queries/lists'
+import { useLists } from '@/providers/ListsProvider'
 
 type TListOptionsProps = {
   listId: number
@@ -17,7 +16,7 @@ const ListOptions = ({ listId, hideCompleted }: TListOptionsProps) => {
   const optionsModalRef = useClickOutside<HTMLDivElement>(() => {
     setOpen(false)
   })
-  const { deleteTask } = useTasks()
+  const { toggleHideCompleted, deleteList } = useLists()
 
   // Local state
   const [isOpen, setOpen] = useState<boolean>(false)
@@ -28,23 +27,22 @@ const ListOptions = ({ listId, hideCompleted }: TListOptionsProps) => {
   const toggleOptions = () => setOpen(!isOpen)
 
   /**
-   * Delete a task
+   * Close options and toggle completed
    */
-  const confirmDeleteTask = () => {
+  const closeAndToggle = () => {
     toggleOptions()
-    deleteTask(listId)
+    toggleHideCompleted(listId)
   }
 
   /**
-   * Close options and toggle completed
+   * Delete a list
    */
-  const toggleHideCompleted = () => {
+  const confirmDeleteList = () => {
     toggleOptions()
-    toggleHideCompletedMutation(listId)
+    if (window.confirm('Do you really want to delete?')) {
+      deleteList(listId)
+    }
   }
-
-  // Mutations
-  const { mutate: toggleHideCompletedMutation } = useToggleHideCompleted()
 
   return (
     <div className={styles.container}>
@@ -55,9 +53,9 @@ const ListOptions = ({ listId, hideCompleted }: TListOptionsProps) => {
         <Option
           icon="completed"
           message={hideCompleted ? 'Show completed' : 'Hide completed'}
-          action={toggleHideCompleted}
+          action={closeAndToggle}
         />
-        <Option icon="trash" message="Delete list" action={confirmDeleteTask} danger />
+        <Option icon="trash" message="Delete list" action={confirmDeleteList} danger />
       </div>
     </div>
   )

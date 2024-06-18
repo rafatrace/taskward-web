@@ -48,12 +48,12 @@ export function useCreateList(onSuccess: (data: TNewListResponse) => void) {
 /**
  * Change list title
  */
-export function useChangeListTitle(id: string) {
+export function useChangeListTitle() {
   const axios = useAxios()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async (title: string) => {
+    mutationFn: async ({ id, title }: { id: number; title: string }) => {
       return await axios.put<TNewListResponse>(`/lists/${id}`, { title, hideComplete: true })
     },
     onSuccess: () => {
@@ -72,6 +72,23 @@ export function useToggleHideCompleted() {
   return useMutation({
     mutationFn: async (id: number) => {
       return await axios.patch(`/lists/${id}/toggle-completed`)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get-lists'] })
+    }
+  })
+}
+
+/**
+ * Delete list
+ */
+export function useDeleteList() {
+  const axios = useAxios()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (id: number) => {
+      return await axios.delete(`/lists/${id}`)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['get-lists'] })

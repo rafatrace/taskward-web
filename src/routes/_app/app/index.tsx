@@ -1,13 +1,11 @@
-import { useGetLists } from '@/queries/lists'
+import { useLists } from '@/providers/ListsProvider'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
 const App = () => {
   // Services
   const navigate = useNavigate()
-
-  // Queries
-  const { data: lists } = useGetLists()
+  const { lists } = useLists()
 
   useEffect(() => {
     if (lists != null) navigate({ to: `/app/${lists[0].id}` })

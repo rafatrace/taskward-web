@@ -1,9 +1,10 @@
-import { TListSimplified, useChangeListTitle } from '@/queries/lists'
+import { TListSimplified } from '@/queries/lists'
 import styles from './styles.module.css'
 import { KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { useSidebar } from '@/providers/SidebarProvider'
 import Icon from '@/components/atoms/Icon'
 import ListOptions from '../ListOptions'
+import { useLists } from '@/providers/ListsProvider'
 
 type TListTitleProps = {
   list: TListSimplified
@@ -15,6 +16,7 @@ const ListTitle = ({ list }: TListTitleProps) => {
 
   // Services
   const { isOpen, openSidebar } = useSidebar()
+  const { updateListTitle } = useLists()
 
   // Local state
   const [title, setTitle] = useState<string>(list.title)
@@ -38,7 +40,7 @@ const ListTitle = ({ list }: TListTitleProps) => {
   const saveAndStopEditing = () => {
     setEditing(false)
     if (title !== list.title) {
-      changeListTitle(title)
+      updateListTitle(list.id, title)
     }
   }
 
@@ -50,9 +52,6 @@ const ListTitle = ({ list }: TListTitleProps) => {
       inputRef.current?.blur()
     }
   }
-
-  // Mutations
-  const { mutate: changeListTitle } = useChangeListTitle(list.id.toString())
 
   return (
     <div className={styles.container}>
