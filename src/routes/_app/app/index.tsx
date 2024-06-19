@@ -8,7 +8,7 @@ const App = () => {
   const { lists } = useLists()
 
   useEffect(() => {
-    if (lists != null) navigate({ to: `/app/${lists[0].id}` })
+    if (lists != null && lists?.[0]?.id != null) navigate({ to: `/app/${lists[0].id}` })
   }, [lists])
 
   return null
