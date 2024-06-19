@@ -3,6 +3,7 @@
 }
 
 .main {
-  flex: 1;
   padding: 18px 28px;
+  width: calc(100vw - 260px);
+  box-sizing: border-box;
 }

@@ -24,6 +24,7 @@
     "react-helmet-async": "^2.0.4",
     "react-hotkeys-hook": "^4.5.0",
     "react-router-dom": "^6.21.3",
+    "react-textarea-autosize": "^8.5.3",
     "sha256": "^0.2.0"
   },
   "devDependencies": {

@@ -12,6 +12,7 @@
   transition:
     transform 100ms ease-in-out,
     border-color 100ms ease-in-out;
+  margin-top: 4px;
 }
 
 .container:hover {

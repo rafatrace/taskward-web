@@ -6,6 +6,7 @@ import { cn } from '@/utils/styles'
 import TaskOptions from '../TaskOptions'
 import StatusButton from '../StatusButton'
 import { useTasks } from '@/providers/TasksProvider'
+import TextareaAutosize from 'react-textarea-autosize'
 
 type TTaskProps = {
   task: TTask
@@ -13,7 +14,7 @@ type TTaskProps = {
 
 const Task = ({ task }: TTaskProps) => {
   // Refs
-  const inputRef = useRef<HTMLInputElement>()
+  const inputRef = useRef<HTMLTextAreaElement>()
 
   // Services
   const { toggleCompletedStatus, updateTaskText } = useTasks()
@@ -38,7 +39,7 @@ const Task = ({ task }: TTaskProps) => {
   /**
    * Check if enter was pressed
    */
-  const checkIfEnterWasPressed = (e: KeyboardEvent<HTMLInputElement>) => {
+  const checkIfEnterWasPressed = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
       inputRef.current?.blur()
     } else if (e.key === 'Escape') {
@@ -74,7 +75,7 @@ const Task = ({ task }: TTaskProps) => {
         <div className={cn(styles.text, { [styles.editing]: isEditing })}>
           <Checkbox checked={localTask.status.label === 'Done'} toggle={toggle} />
           {isEditing ? (
-            <input
+            <TextareaAutosize
               ref={inputRef}
               autoFocus
               value={text}
