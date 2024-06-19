@@ -16,7 +16,7 @@
 }
 
 .showSidebar:hover {
-  background-color: #eee;
+  background-color: var(--n30);
 }
 
 .sidebarAndTitle {
@@ -42,8 +42,8 @@
 }
 
 .label:hover {
-  background-color: #eee;
-  border-color: #eaeaea;
+  background-color: var(--n30);
+  border-color: var(--n35);
 }
 
 .input {

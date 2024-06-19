@@ -11,7 +11,7 @@ type TOptionProps = {
 const Option = ({ icon, message, action, danger }: TOptionProps) => {
   return (
     <div className={styles.container} onClick={action}>
-      <Icon type={icon} size={16} color="#262626" />
+      <Icon type={icon} size={16} color="var(--n70)" />
       <div>{message}</div>
     </div>
   )

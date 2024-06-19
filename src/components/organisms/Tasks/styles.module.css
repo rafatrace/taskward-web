@@ -5,19 +5,19 @@
 
 .tableHeader {
   display: flex;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid var(--n40);
   height: 24px;
   font-size: 14px;
 }
 
 .taskHeader {
   flex: 1;
-  color: #252628;
+  color: var(--n70);
   user-select: none;
 }
 
 .statusHeader {
   width: 300px;
-  color: #636363;
+  color: var(--n60);
   user-select: none;
 }

@@ -8,7 +8,7 @@ type TNewTaskButtonProps = {
 const NewTaskButton = ({ createTask }: TNewTaskButtonProps) => {
   return (
     <div className={styles.container} onClick={createTask}>
-      <Icon size={16} type="plus-square" color="#636363" />
+      <Icon size={16} type="plus-square" color="var(--n60)" />
       <span>New task</span>
     </div>
   )

@@ -15,13 +15,13 @@
   box-sizing: border-box;
   transition: all 200ms ease-in-out;
   margin-left: -6px;
-  color: #636363;
+  color: var(--n60);
   user-select: none;
 }
 
 .container:hover {
-  background-color: #eee;
-  border-color: #eaeaea;
+  background-color: var(--n30);
+  border-color: var(--n35);
 }
 
 .container:active {

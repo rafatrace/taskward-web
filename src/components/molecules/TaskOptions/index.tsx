@@ -38,7 +38,7 @@ const TaskOptions = ({ taskId }: TTaskOptionsProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.btn} data-ignore-click-outside onClick={toggleOptions}>
-        <Icon type="more-horizontal" color="#636363" size={14} />
+        <Icon type="more-horizontal" color="var(--n60)" size={14} />
       </div>
       <div ref={optionsModalRef} className={cn(styles.optionsModal, { [styles.open]: isOpen })}>
         <Option icon="trash" message="Delete task" action={confirmDeleteTask} />

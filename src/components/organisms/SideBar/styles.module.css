@@ -1,7 +1,7 @@
 .container {
-  background-color: #f8f8f8;
+  background-color: var(--n20);
   width: 260px;
-  border-right: 1px solid #ebebeb;
+  border-right: 1px solid var(--n35);
   display: none;
   flex-direction: column;
   position: fixed;
@@ -37,7 +37,7 @@
 
 .new {
   margin-top: 20px;
-  color: #636363;
+  color: var(--n60);
   text-decoration: none;
   padding: 0 12px;
   display: flex;
@@ -49,5 +49,5 @@
 }
 
 .new:hover {
-  color: #252628;
+  color: var(--n70);
 }

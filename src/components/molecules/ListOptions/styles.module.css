@@ -15,7 +15,7 @@
 }
 
 .btn:hover {
-  background-color: #ebebeb;
+  background-color: var(--n35);
 }
 
 .optionsModal {
@@ -23,10 +23,10 @@
   top: 100%;
   right: 0;
   width: 200px;
-  background-color: #ffffff;
+  background-color: var(--n10);
   display: none;
   z-index: 800;
-  border: 1px solid #dddddd;
+  border: 1px solid var(--n45);
   border-radius: 8px;
   padding: 3px 0;
   box-shadow:

@@ -8,18 +8,18 @@
 }
 
 .white {
-  background-color: #ffffff;
-  color: #292929;
+  background-color: var(--n10);
+  color: var(--n70);
 }
 
 .orange {
-  background-color: #fff2dc;
-  color: #906500;
+  background-color: var(--inProgressFade);
+  color: var(--inProgress);
 }
 
 .green {
-  background-color: #e9f7de;
-  color: #3c7c00;
+  background-color: var(--doneFade);
+  color: var(--done);
 }
 
 .hideIt {

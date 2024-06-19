@@ -58,7 +58,7 @@ const ListTitle = ({ list }: TListTitleProps) => {
       <div className={styles.sidebarAndTitle}>
         {!isOpen && (
           <div className={styles.showSidebar} onClick={openSidebar}>
-            <Icon type="show-sidebar" size={20} color="#636363" />
+            <Icon type="show-sidebar" size={20} color="var(--n60)" />
           </div>
         )}
         {editing ? (

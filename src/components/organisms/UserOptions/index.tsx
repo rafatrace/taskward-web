@@ -44,14 +44,14 @@ const UserOptions = () => {
       <div className={styles.userInfo} data-ignore-click-outside onClick={openOptions}>
         <img src={gravatarUrl} className={styles.avatar} />
         <span>{user?.name}</span>
-        <Icon type="chevron-down" color="#262626" size={14} />
+        <Icon type="chevron-down" color="var(--n70)" size={14} />
       </div>
       <div ref={optionsModalRef} className={cn(styles.optionsModal, { [styles.open]: isOpen })}>
         <Option icon="settings" message="Settings" action={() => console.log('open settings')} />
         <Option icon="sign-out" message="Sign out" action={signOutUser} />
       </div>
       <div className={styles.hideSidebar} onClick={closeSidebar}>
-        <Icon type="hide-sidebar" size={20} color="#636363" />
+        <Icon type="hide-sidebar" size={20} color="var(--n60)" />
       </div>
     </div>
   )

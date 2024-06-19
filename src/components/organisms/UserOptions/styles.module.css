@@ -16,7 +16,7 @@
 }
 
 .userInfo:hover {
-  background-color: #ebebeb;
+  background-color: var(--n35);
 }
 
 .avatar {
@@ -28,7 +28,7 @@
 .userInfo span {
   font-size: 14px;
   font-weight: 500;
-  color: #262626;
+  color: var(--n70);
 }
 
 .optionsModal {
@@ -36,10 +36,10 @@
   top: calc(100% - 10px);
   left: 16px;
   width: 200px;
-  background-color: #ffffff;
+  background-color: var(--n10);
   display: none;
   z-index: 800;
-  border: 1px solid #dddddd;
+  border: 1px solid var(--n45);
   border-radius: 8px;
   padding: 3px 0;
   box-shadow:
@@ -64,7 +64,7 @@
 }
 
 .hideSidebar:hover {
-  background-color: #eee;
+  background-color: var(--n30);
 }
 
 .userInfo img,

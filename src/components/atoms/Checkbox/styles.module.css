@@ -1,14 +1,14 @@
 .container {
   width: 16px;
   height: 16px;
-  border: 1px solid #e6e6e6;
+  border: 1px solid var(--n40);
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transform: scale(1);
-  background-color: #ffffff;
+  background-color: var(--n10);
   transition:
     transform 100ms ease-in-out,
     border-color 100ms ease-in-out;
@@ -17,7 +17,7 @@
 
 .container:hover {
   transform: scale(1.1);
-  border-color: #d6d6d6;
+  border-color: var(--n50);
 }
 
 .container:not(.checked) svg {
@@ -25,12 +25,12 @@
 }
 
 .checked {
-  background-color: #3c7c00;
-  border-color: #3c7c00;
+  background-color: var(--done);
+  border-color: var(--done);
 }
 
 .checked:hover {
-  border-color: #3c7c00;
+  border-color: var(--done);
 }
 
 .container svg {

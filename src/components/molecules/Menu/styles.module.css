@@ -1,5 +1,5 @@
 .menu {
-  color: #636363;
+  color: var(--n60);
   text-decoration: none;
   padding: 0 12px;
   display: flex;
@@ -12,10 +12,10 @@
 
 .menu:hover,
 .active {
-  background-color: #eeeeee;
+  background-color: var(--n30) eee;
 }
 
 .active {
-  color: #252628;
+  color: var(--n70);
   font-weight: 500;
 }
