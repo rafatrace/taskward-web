@@ -38,6 +38,7 @@
   box-sizing: border-box;
   transition: all 200ms ease-in-out;
   margin-left: -10px;
+  user-select: none;
 }
 
 .label:hover {

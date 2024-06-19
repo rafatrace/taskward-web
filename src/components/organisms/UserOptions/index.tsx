@@ -41,7 +41,7 @@ const UserOptions = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.userInfo} onClick={openOptions}>
+      <div className={styles.userInfo} data-ignore-click-outside onClick={openOptions}>
         <img src={gravatarUrl} className={styles.avatar} />
         <span>{user?.name}</span>
         <Icon type="chevron-down" color="#262626" size={14} />

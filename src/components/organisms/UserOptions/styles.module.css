@@ -66,3 +66,9 @@
 .hideSidebar:hover {
   background-color: #eee;
 }
+
+.userInfo img,
+.userInfo span,
+.userInfo svg {
+  pointer-events: none;
+}

@@ -4,6 +4,7 @@
   border-radius: 4px;
   padding: 2px 4px;
   display: inline-flex;
+  user-select: none;
 }
 
 .white {

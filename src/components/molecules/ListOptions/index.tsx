@@ -46,7 +46,7 @@ const ListOptions = ({ listId, hideCompleted }: TListOptionsProps) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.btn} onClick={toggleOptions}>
+      <div className={styles.btn} data-ignore-click-outside onClick={toggleOptions}>
         <Icon type="more-horizontal" color="#636363" size={14} />
       </div>
       <div ref={optionsModalRef} className={cn(styles.optionsModal, { [styles.open]: isOpen })}>

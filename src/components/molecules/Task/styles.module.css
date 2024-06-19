@@ -52,6 +52,7 @@
   line-height: 20px;
   padding-top: 4px;
   padding-bottom: 4px;
+  user-select: none;
 }
 
 .text textarea {

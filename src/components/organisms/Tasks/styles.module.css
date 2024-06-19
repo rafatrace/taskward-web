@@ -13,9 +13,11 @@
 .taskHeader {
   flex: 1;
   color: #252628;
+  user-select: none;
 }
 
 .statusHeader {
   width: 300px;
   color: #636363;
+  user-select: none;
 }

@@ -16,6 +16,7 @@
   transition: all 200ms ease-in-out;
   margin-left: -6px;
   color: #636363;
+  user-select: none;
 }
 
 .container:hover {

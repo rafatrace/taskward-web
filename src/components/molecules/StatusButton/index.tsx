@@ -39,6 +39,7 @@ const StatusButton = ({ task }: TStatusButtonProps) => {
     <div
       className={styles.statusButton}
       onClick={toggleOptions}
+      data-ignore-click-outside
       onMouseOver={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
