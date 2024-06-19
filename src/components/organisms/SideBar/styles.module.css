@@ -1,10 +1,14 @@
 .container {
   background-color: #f8f8f8;
   width: 260px;
-  height: 100vh;
   border-right: 1px solid #ebebeb;
   display: none;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
 }
 
 .container.open {

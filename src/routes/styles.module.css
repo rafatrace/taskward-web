@@ -1,9 +1,11 @@
-.container {
-  display: flex;
-}
-
 .main {
   padding: 18px 28px;
   width: calc(100vw - 260px);
+  margin-left: 260px;
   box-sizing: border-box;
+}
+
+.main.full {
+  width: calc(100vw);
+  margin-left: 0;
 }
