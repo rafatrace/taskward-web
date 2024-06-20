@@ -57,7 +57,7 @@ const NewTaskRow = ({ close }: TNewTaskRowProps) => {
           onKeyDown={checkIfEnterWasPressed}
         />
       </div>
-      <div className={styles.status}>-</div>
+      <div className={styles.status}></div>
     </div>
   )
 }
