@@ -72,7 +72,7 @@
 }
 
 .status {
-  width: 300px;
+  width: 200px;
   color: var(--n60);
   display: flex;
   align-items: center;
